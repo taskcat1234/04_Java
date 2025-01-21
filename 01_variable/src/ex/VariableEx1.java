@@ -103,8 +103,8 @@ public class VariableEx1 {
 		// byte, short : 다른 언어(C언어)와 호환을 위해 남겨진 자료형
 		// -> 별도의 리터럴 표기법 X
 		// -> 초기화 시 int 타입 표기법 사용
-		byte byteNum = 100;
-		short shortNum = 20000;
+		// byte byteNum = 100;
+		// short shortNum = 20000;
 		
 		// [실수형]
 		System.out.println("---------------");
@@ -152,8 +152,8 @@ public class VariableEx1 {
 		*/
 		String str1 = "A";
 		String str2 = "AB";
-		String str3 = "ABC";
-		String str4 = "ABCD";
+		// String str3 = "ABC";
+		// String str4 = "ABCD";
 		System.out.println("str1 : " + str1);
 		System.out.println(System.identityHashCode(str1)); 
 		// hashCode : 주소를 해시 함수롤 변환한 것

@@ -72,7 +72,11 @@ public class variableEx3 {
 		System.out.println("A 뒤에 10번째 문자 : " + (char)('A'+ 10)); // K
 		// A B C D E F G H I J K
 		
-		
+		/*
+		 * 컴퓨터의 값처리 원칙
+		 * 같은 형태의 처리만 가능
+		 * 결과갑은 같은 형태만 가능 
+		*/
 		
 		
 	}
