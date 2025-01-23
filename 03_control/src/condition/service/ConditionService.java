@@ -93,6 +93,7 @@ public class ConditionService {
 		System.out.println("2.method2()");
 		System.out.println("3.method3()");
 		System.out.println("4.method4()");
+		System.out.println("5.method5()");
 		System.out.print("메뉴 번호 입력 >>");
 		int input = sc.nextInt();
 		
@@ -156,4 +157,38 @@ public class ConditionService {
 			}
 		}
 	}
+	
+//	public void method4() {
+//		System.out.print("이름 : ");
+//		String name = sc.next();
+//		System.out.print("중간고사 점수(40%) : ");
+//		int wndrks = sc.nextInt();
+//		System.out.print("기말고사 점수(50%) : ");
+//		int rlakf = sc.nextInt();
+//		System.out.print("과제(10%) : ");
+//		int rhkwp = sc.nextInt();
+//		if(wndrks < 0 || 100 < wndrks || rlakf < 0 || 100 < rlakf || rhkwp < 0 || 100 < rhkwp) {
+//			System.out.print("잘못된 값입니다.");
+//		}else {
+//			double sum = (wndrks *0.4) + (rlakf * 0.5) + (rhkwp *0.1);
+//			String result; // 성적 저장용 변수
+//      //자바 지역변수는 초기화 안되면 사용이 불가능
+//			switch((int)sum/10) { // 10의 자리 계산 
+//				//하나의 case에 여러 경우를 , 기호를 이용해서 작성 가능
+//				// (Java만 가능한 기능)
+//				case 10, 9  : result = "A"; break;
+//				case 8  : result = "B"; break;
+//				case 7  : result = "C"; break;
+//				case 6  : result = "D"; break;
+//				default : result = "F";
+//			}
+//			// 1의 자리 계산
+//			if(sum == 100 || sum >= 60.0 && sum % 10 >= 5) {
+//				result += "+";
+//			}
+//			// 결과 출력
+//			System.out.printf("\n%s의 최종점수 : %.1f점\n", name,sum);
+//			System.out.println("성적 : " + result);
+//		}
+//	}
 }
