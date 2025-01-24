@@ -38,7 +38,17 @@ public class StaticmemberRun {
 		// -> 모든 korean 객체의 NationalCode가 일괄 변경
 		Korean.nationalCode = 1000;
 		System.out.println("--------------------------------------------");
+		System.out.println("Korean.nationalCode : " + Korean.nationalCode );
 		System.out.println(k1.toString());
 		System.out.println(k2.toString());
+		
+		
+		System.out.println("--------------------------------------------");
+		System.out.println("[초기화 블럭 확인]");
+		Korean k3 = new Korean();
+		Korean k4 = new Korean();
+		System.out.println(k3.toString());
+		System.out.println(k4.toString());
+		
 	}
 }
