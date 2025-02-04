@@ -34,11 +34,15 @@ public class TestRun {
 		/* 다형성 (Polymorphism)
 		 * - 하나의 객체가 다양한 객체 형태로 변하는 성질
 		 * 
-		 * 다형성 - 업캐스팅 (Up Casting)
+		 * * 다형성 - 업캐스팅 (Up Casting)
 		 * - 자식 객체의 형태를 부모 객체 형태로 변환
 		 * 
 		 * - '부모' 참조 변수 = new '자식' 객체;
 		 * 	 -> 자식 객체가 부모 객체 형태로 변한 것 처럼 보임 
+		 * 
+		 * * 다형성 - 다운 캐스팅(Down Casting)
+		 * - 업 캐스팅 상태에서(부모 참조 변수 = 자식 객체)
+		 * 	 참조 변수의 자료형을 자식 타입으로 강제 형변환 하는 것
 		 * 
 		 */
 		
@@ -55,6 +59,17 @@ public class TestRun {
 		System.out.println("p2.getLastName() : " + p2.getLastName());
 		System.out.println("p2.hashCode() : " + p2.hashCode());
     //System.out.println(p2.getCar()); 오류가 발생
+		
+		System.out.println("----------------------------------------------------");
+		
+		// 다운 캐스팅 확인
+		// -> 참조 변수를 자식 자료형으로 강제 형변환
+		System.out.println(((Child)p2).getCar());
+		
+		// 얕은 복사(주소만 복사)를 이용한 다운 캐스팅
+		Child c2 = (Child)p2;
+		System.out.println("c2.getCar() : " + c2.getCar());
+		
 		
 	}
 	
