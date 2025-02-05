@@ -8,40 +8,47 @@ public class LSJCalculator2 implements Calculator{
 	
 	@Override
 	public int plus(int a, int b) {
-		return checkNum(a+b);
+		return checkNum(a + b);
 	}
 
 	@Override
 	public int minus(int a, int b) {
-		return checkNum(a-b);
+		return checkNum(a - b);
 	}
 
 	@Override
 	public int multi(int a, int b) {
-		return checkNum(a*b);
+		return checkNum(a * b);
 	}
 
 	@Override
-	public double div(int a, int b) { 
-		double c = checkNum2(a/b);
-		return c;
+	public double div(int a, int b) {
+		
+		double result = (double)a / b;
+		if(result > MAX_NUM) return MAX_NUM;
+		if(result < MIN_NUM) return MIN_NUM;
+		return result;
 	}
 
 	@Override
 	public int mod(int a, int b) {
-		return checkNum(a%b);
+		return checkNum(a % b);
 	}
 
-	@Override //거듭제곱
+	@Override
 	public int pow(int a, int x) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		// Math.pow() 이용
+		return checkNum((int)Math.pow(a, x));
 	}
 
-	@Override // 원의 넓이 반환
+	@Override
 	public double areaOfCircle(double r) {
-//		int c = checkNum(r*r*PI);
-		return 10;
+		double result = PI * r * r;
+		
+		if(result > MAX_NUM) return MAX_NUM;
+		if(result < MIN_NUM) return MIN_NUM;
+		return result;
 	}
 
 }

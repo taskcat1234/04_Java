@@ -144,12 +144,6 @@ public interface Calculator {
 	 */
 	default int checkNum(int num) {
 		if(num > MAX_NUM) return MAX_NUM;
-		if(num > MIN_NUM) return MIN_NUM;
-		return num;
-	}
-	
-	default double checkNum2(double num) {
-		if(num > MAX_NUM) return MAX_NUM;
 		if(num < MIN_NUM) return MIN_NUM;
 		return num;
 	}
