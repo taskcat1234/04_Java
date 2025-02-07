@@ -26,7 +26,16 @@ public class BookView {
 			System.out.println("2. index 번호로 조회");
 			System.out.println("3. 책 추가하기");
 			System.out.println("4. 책 가격 수정하기");
-			System.out.println("5. 책 제거하기");
+			System.out.println("5. 책 제거하기(index)");
+			// 추가 메뉴
+			System.out.println("6. 제목이 일치하는 책 한 권 조회하기");
+			System.out.println("7. 제목이 일치하는 책 제거하기");
+			
+			System.out.println("8. 출판사가 일치하는 책 모두 조회하기");
+			System.out.println("9. 저자가 일치하는 책 모두 조회하기");
+			System.out.println("10. 검색어가 제목,저자 에 포함된 모든 책 조회하기");
+			System.out.println("11. bookList 제목 오름차순으로 정렬시키기");
+			
 			System.out.println("0. 종료");
 			System.out.println(); // 줄바꿈
 			
@@ -42,7 +51,13 @@ public class BookView {
 				case 3: addBook(); break;
 				case 4: modifyBookPrice(); break;
 				case -1: modifyBookPrice2(); break;
-				case 5: break;
+				case 5: renoveBook(); break;
+				case 6: selectTitle(); break;
+				case 7: removeBookTitle(); break;
+				case 8: selectPublisher(); break;
+				case 9: selectAuthor(); break;
+				case 10: searchBook(); break;
+				case 11: bookListSorting(); break;
 				case 0: System.out.println("*** 프로그램이 종료됨니다 ***"); break;
 				default: System.out.println("@@@ 메뉴 번호 잘못 입력 @@@");
 			
@@ -181,4 +196,127 @@ public class BookView {
 		System.out.println(service.modifyBookPrice2(index, InputPrice));
 	}
 	
+	/** index 번호를 입력 받아 책 제거
+	 * 
+	 * 단, 해당 index에 책이 없으면
+	 * "해당 인덱스에 책이 존재하지 않습니다" 출력
+	 * 
+	 * 있으면
+	 * "[책제목] 책이 제거되었습니다"
+	 * 
+	 */
+	private void renoveBook() {
+		System.out.println("\n### 책 제거하기(index) ###\n");
+		System.out.print("제거할 책 index 번호 : ");
+		int index = sc.nextInt();
+		
+		// 서비스 호출
+		BookDTO target = service.renoveBook(index);
+		
+		if(target == null) {
+			System.out.println("해당 인덱스에 책이 존재하지않습니다.");
+		}else {
+			System.out.printf("%s 책이 제거 되었습니다",target.getTitle());
+		}
+	}
+	
+	
+	/** 책 제목을 입력 받아서 일치하는 책 정보 출력
+	 * 단, 제목이 일치하는 책이 없다면 "검색 결과 없음" 출력
+	 */
+	private void selectTitle() { // 제목이 일치하는 책 조회
+		System.out.println("\n### 제목이 일치하는 책 한 권 조회하기 ###\n");
+		
+		System.out.print("검색할 책 제목 : ");
+		String title = sc.nextLine();
+		
+		//서비스 호출
+		BookDTO book = service.selectTitle(title);
+		if(book == null) {
+			System.out.println("일치하는 책 없음");
+		}else {
+			System.out.println("제목 : " + book.getTitle());
+			System.out.println("저자 : " + book.getAuthor());
+			System.out.println("가격 : " + book.getPrice());
+			System.out.println("출판사 : " + book.getPublisher());
+		}
+		
+		
+	}
+	
+	private void removeBookTitle() { // 제목이 일치하는 책 제거
+		System.out.println("\n### 제목이 일치하는 책 제거 ###\n");
+		
+		System.out.print("제거할 책 제목 : ");
+		String title = sc.nextLine();
+		
+		//서비스 호출
+		BookDTO book = service.removeBookTitle(title);
+		if(book == null) {
+			System.out.println("일치하는 책 없음");
+		}else {
+			System.out.println("제거 되는 책 제목 : " + book.getTitle());
+		}
+	}
+	
+	//출판사가 일치하는 책 모두 조회하기
+	private void selectPublisher() {
+		System.out.println("\n### 출판사가 일치하는 책 한 모두 조회하기 ###\n");
+		
+		System.out.print("검색할 책 출판사 입력 : ");
+		String Publisher = sc.nextLine();
+		
+		//서비스 호출
+		List<BookDTO> books = service.selectPublisher(Publisher);
+		if(books.isEmpty()) {
+			System.out.println("일치하는 책 없음");
+		}else {
+			for(BookDTO b : books) {
+				System.out.println(b);
+			}
+		}
+	}
+	
+	// 저자가 일치하는 책 모두 조회하기
+	private void selectAuthor() {
+		System.out.println("\n### 저자가 일치하는 책 한 모두 조회하기 ###\n");
+		
+		System.out.print("검색할 책 저자 입력 : ");
+		String author = sc.nextLine();
+		
+		//서비스 호출
+		List<BookDTO> books = service.selectAuthor(author);
+		if(books.isEmpty()) {
+			System.out.println("일치하는 책 없음");
+		}else {
+			for(BookDTO b : books) {
+				System.out.println(b);
+			}
+		}
+	}
+	
+	private void searchBook() {
+		System.out.println("\n### 검색어가 제목,저자 에 포함된 모든 책 조회하기 ###\n");
+		
+		System.out.print("검색할 책 제목 또는 저자  입력 : ");
+		String authorPublisher = sc.nextLine();
+		
+		//서비스 호출
+		List<BookDTO> books = service.searchBook(authorPublisher);
+		if(books.isEmpty()) {
+			System.out.println("일치하는 책 없음");
+		}else {
+			for(BookDTO b : books) {
+				System.out.println(b);
+			}
+		}
+	}
+
+	private void bookListSorting() {
+		System.out.println("\n### 제목 오름차순 정렬 시키기 ###\n");
+		service.bookListSorting();
+		System.out.println("작동되었습니다!");
+		
+	}
+
 }

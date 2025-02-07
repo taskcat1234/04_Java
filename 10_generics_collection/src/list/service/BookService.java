@@ -1,6 +1,7 @@
 package list.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import list.dto.BookDTO;
@@ -89,13 +90,89 @@ public class BookService {
 				target.getTitle(), oldPrice, InputPrice);
 	}
 	
+	/** index번째 BookDTO 제거
+	 * 단, 없으면 null 반환
+	 * @param index
+	 */
+	public BookDTO renoveBook(int index) {
+		if(checkIndex(index) == false) return null;
+		return bookList.remove(index);
+		// bookList에서 index 번째 요소를 제거
+		// == index 번째 요소를 뽑아냄
+	}
 	
+	/** 제목이 일치하는 책 반환
+	 * @param title : 찾을려는 책 제목
+	 */
+	public BookDTO selectTitle(String title) {
+		for(BookDTO book : bookList) { // bookList에서 하나씩 꺼냄
+			if(book.getTitle().equals(title)) { // 꺼낸 책의 제목과 전달 받은 책의 제목이 같을 경우
+				return book;
+			}
+		}
+		return null;
+	}
 	
+	public BookDTO removeBookTitle(String title) {
+		for(int i = 0; i < bookList.size(); i++) { // bookList에서 하나씩 꺼냄
+			BookDTO book = bookList.get(i);
+			if(book.getTitle().equals(title)) { // 꺼낸 책의 제목과 전달 받은 책의 제목이 같을 경우
+				return bookList.remove(i);
+			}
+		}
+		return null;
+		// bookList에서 index 번째 요소를 제거
+		// == index 번째 요소를 뽑아냄
+	}
 	
+	/** 저자가 일치하는 책 모두 찾아서 출력
+	 * 
+	 * @param author
+	 * @return
+	 */
+	public List<BookDTO> selectAuthor(String author) {
+		List<BookDTO> books = new ArrayList<BookDTO>();
+		for(BookDTO book : bookList) { // bookList에서 하나씩 꺼냄
+			if(book.getAuthor().equals(author)) { // 꺼낸 책의 제목과 전달 받은 저자의 제목이 같을 경우				
+				books.add(book);
+			}
+		}
+		return books;
+	}
 	
+	/** 출판사가 일치하는 책 모두 출력
+	 * 
+	 * @param Publisher
+	 * @return
+	 */
+	public List<BookDTO> selectPublisher(String Publisher) {
+		List<BookDTO> books = new ArrayList<BookDTO>();
+		for(BookDTO book : bookList) { // bookList에서 하나씩 꺼냄
+			if(book.getPublisher().equals(Publisher)) { // 꺼낸 책의 제목과 전달 받은 출판사의 제목이 같을 경우				
+				books.add(book);
+			}
+		}
+		return books;
+	}
 	
+	/** 저자 또는 출판사 중에 1개라도 맞다면 모두 출력
+	 * 
+	 * @param authorPublisher
+	 * @return
+	 */
+	public List<BookDTO> searchBook(String authorPublisher) {
+		List<BookDTO> books = new ArrayList<BookDTO>();
+		for(BookDTO book : bookList) { // bookList에서 하나씩 꺼냄
+			if(book.getAuthor().equals(authorPublisher) || book.getPublisher().equals(authorPublisher)) { // 꺼낸 책의 출판사 또는 저자가 1개라도 일치할 경우			
+				books.add(book);
+			}
+		}
+		return books;
+	}
 	
-	
+	public void bookListSorting() {
+		Collections.sort(bookList);
+	}
 	
 	
 }
