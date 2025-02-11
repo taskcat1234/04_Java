@@ -52,6 +52,8 @@ public class ThrowsTest {
 	
 	// throws 구문을 작성하지 않아도
 	// UncheckedException 발생 시 자동으로 호출부로 던짐!!!
+	// -> 왜? -> 컴파일러가 자동생성함(자바라는 언어의 설계 철학) 
+	// -> 개발자가 덜 신경쓰고 쉽게 사용
 	public void test2() {
 		// UncheckedException 강제 발생
 		// throw new RuntimeException();
